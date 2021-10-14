@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="position">
       <div class="iconfont position__icon">&#xe7f1;</div>
-      <div>北京理工</div>
+      <div class="position_address">北京理工北京理工</div>
       <div class="iconfont position_notice">&#xe7c4;</div>
     </div>
   </div>
@@ -47,6 +47,9 @@
       top: 0.01rem;
       font-size: 0.2rem;
     }
+    .position_address{
+      width: 3rem;
+    }
     .position_notice {
       position: absolute;
       right: 0;
@@ -65,6 +68,7 @@
   width: 100%;
   height: 0.49rem;
   border-top: 0.01px solid #f1f1f1;
+  color: $content-fontcolor;
   .docker_item {
     flex: 1;
     text-align: center;
