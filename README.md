@@ -1,24 +1,8 @@
-# vue3-test2
+DEM明明规范
 
-## Project setup
-```
-npm install
-```
+block_element-modifier
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+例
+docker
+  docker_item docker_item-active
+  docker_title
