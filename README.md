@@ -1,4 +1,4 @@
-1.DEM明明规范
+1.BEM明明规范
 
 block_element-modifier
 
