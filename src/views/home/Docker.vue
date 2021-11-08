@@ -3,7 +3,6 @@
     <div
       v-for="(item, index) in dockerList"
       :class="{'docker__item': true, 'docker__item--active': index === 0}"
-      class="docker__item "
       :key="item.icon"
     >
       <div class="iconfont" v-html="item.icon" />
@@ -27,7 +26,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../../style/viriables.scss';
 .docker {
   display: flex;
