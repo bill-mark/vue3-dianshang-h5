@@ -20,22 +20,30 @@
     <div class="wrapper_login-button" @click="handleLogin">登陆</div>
 
     <div class="wrapper_login-link">立即注册</div>
+
+    <Toast v-if="toastData.showToast" :message="toastData.toastMessage" />
   </div>
 </template>
 
 <script>
-import { useRouter } from "vue-router";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 import { login } from "@/api/login";
+import Toast,{useToastEffect} from '@/components/Toast'
 export default {
   name: "login",
+  components:{
+     Toast,
+  },
   setup() {
+       const router = useRouter();
     const userdata = reactive({
       username: "",
       password: "",
     });
+    const {toastData,showToast } =useToastEffect()
 
-    const router = useRouter();
+   
     const handleLogin = async () => {
       let { data } = await login({
         username: userdata.username,
@@ -45,9 +53,11 @@ export default {
       if (data.code === 0) {
         localStorage.isLogin = true;
         router.push({ name: "Home" });
+      }else{
+          showToast('登陆失败')
       }
     };
-    return { handleLogin, userdata };
+    return { handleLogin, userdata,toastData };
   },
 };
 </script>
