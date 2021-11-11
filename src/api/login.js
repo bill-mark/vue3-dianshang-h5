@@ -8,3 +8,11 @@ export const login = params =>{
         data:params,
     })
 }
+
+export const gethotshop = params =>{
+    return request({
+        url:"/hotshop",
+        method:"GET",
+        params:params,
+    })
+}

@@ -60,7 +60,7 @@ export default {
   components: {
     Toast,
   },
-  // setup 只控制代码流程
+  // setup 只控制代码逻辑流                     
   setup() {
     const { show, toastMessage, showToast } = useToastEffect();
     const {username, password,handleLogin} = useLoginEffect(showToast)
