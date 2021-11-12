@@ -6,12 +6,15 @@
      v-for="item in nearbyList"
      :key="item.id"
      :item="item"
+     @click="goto_detail"
    />
   </div>
 </template>
 
 <script>
 import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+
 import { gethotshop } from "@/api/login";
 import ShopInfo from "@/components/ShopInfo"
 export default {
@@ -30,9 +33,23 @@ export default {
         }
     }
     getNearbyList()
+
+    const {goto_detail} = useMethodsEffect(nearbyList)
     
-    return { nearbyList };
+    return { nearbyList,goto_detail };
   }
+}
+
+const useMethodsEffect =(nearbyList)=>{
+   const router = useRouter();
+
+   const goto_detail =()=>{
+       console.log(nearbyList.value[0].imgUrl)
+       return
+        router.push({ name: "Shop" });
+   }
+
+   return {goto_detail}
 }
 </script>
 

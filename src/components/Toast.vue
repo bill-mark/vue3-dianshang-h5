@@ -5,9 +5,6 @@
 import {reactive,toRefs} from 'vue'
 export default {
     props:['message'],
-    setup() {
-        
-    },
 }
 
 export const useToastEffect = ()=>{

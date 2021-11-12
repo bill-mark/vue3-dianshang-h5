@@ -19,6 +19,8 @@
 
     <div class="wrapper_login-button" @click="handleLogin">登陆</div>
 
+    <div>{{abc}}</div>
+
     <Toast v-if="show" :message="toastMessage" />
   </div>
 </template>
@@ -35,9 +37,11 @@ const useLoginEffect = (showToast) => {
   const userdata = reactive({
     username: "",
     password: "",
+    abc:['111']
   });
 
   const handleLogin = async () => {
+      userdata.abc[0]= '222'
     let { data } = await login({
       username: userdata.username,
       password: userdata.password,
@@ -50,9 +54,10 @@ const useLoginEffect = (showToast) => {
       showToast("登陆失败");
     }
   };
+
   
-  const {username,password} = toRefs(userdata)
-  return {username,password,handleLogin}
+  const {username,password,abc} = toRefs(userdata)
+  return {username,password,abc,handleLogin}
 };
 
 export default {
@@ -63,10 +68,10 @@ export default {
   // setup 只控制代码逻辑流                     
   setup() {
     const { show, toastMessage, showToast } = useToastEffect();
-    const {username, password,handleLogin} = useLoginEffect(showToast)
+    const {username, password,abc,handleLogin} = useLoginEffect(showToast)
 
     return { 
-        username, password,handleLogin,show, toastMessage 
+        username, password,abc,handleLogin,show, toastMessage 
     };
   },
 };
