@@ -16,3 +16,11 @@ export const gethotshop = params =>{
         params:params,
     })
 }
+
+export const getshopdetail = params =>{
+    return request({
+        url:"/shop",
+        method:"GET",
+        params:params,
+    })
+}

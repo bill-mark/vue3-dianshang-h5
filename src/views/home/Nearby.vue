@@ -6,7 +6,7 @@
      v-for="item in nearbyList"
      :key="item.id"
      :item="item"
-     @click="goto_detail"
+     @click="goto_detail(item.id)"
    />
   </div>
 </template>
@@ -43,10 +43,9 @@ export default {
 const useMethodsEffect =(nearbyList)=>{
    const router = useRouter();
 
-   const goto_detail =()=>{
-       console.log(nearbyList.value[0].imgUrl)
-       return
-        router.push({ name: "Shop" });
+   const goto_detail =(itemid)=>{
+      console.log(nearbyList.value[0].imgUrl,itemid)
+      router.push({ name: "Shop",params:{id:itemid} });
    }
 
    return {goto_detail}
