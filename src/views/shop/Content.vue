@@ -8,13 +8,13 @@
         }"
         v-for="item in categories"
         :key="item.name"
-        @click="() => handleCategoryClick(item.tab)"
+        @click="() => handleTableClick(item.tab)"
       >
         {{ item.name }}
       </div>
     </div>
     <div class="product">
-      <div class="product__item" v-for="item in contentList" :key="item._id">
+      <div class="product__item" v-for="item in list" :key="item._id">
         <img
           class="product__item__img"
           src="http://www.dell-lee.com/imgs/vue3/near.png"
@@ -38,42 +38,57 @@
 </template>
 
 <script>
-import { reactive, toRefs } from "vue";
+import { reactive,ref, toRefs, watchEffect } from "vue";
 import { getshoplist } from "@/api/login";
+
+const categories = [
+  {
+    name: "全部商品",
+    tab: "all",
+  },
+  {
+    name: "秒杀",
+    tab: "seckill",
+  },
+  {
+    name: "新鲜水果",
+    tab: "fruit",
+  },
+];
+
+const useTabEffect =()=>{
+  const currentTab = ref( categories[0].tab)
+  const handleTableClick = (tab)=>{
+    currentTab.value = tab
+  }
+  return {currentTab,handleTableClick}
+}
+
+const useCurrentListEffect = (currentTab)=>{
+   const content = reactive({list:[]})
+
+    const getContentData = async () => {
+      const { data: result } = await getshoplist({ 
+        tab:currentTab.value
+       });
+      if (result?.error === 0 && result?.data?.length) {
+        content.list = result.data;
+      }
+    };
+
+    watchEffect(()=>{getContentData() })
+
+    const {list} = toRefs(content)
+    return{list}
+}
+
 export default {
   name: "Content",
   setup() {
-    const categories = [
-      {
-        name: "全部商品",
-        tab: "all",
-      },
-      {
-        name: "秒杀",
-        tab: "seckill",
-      },
-      {
-        name: "新鲜水果",
-        tab: "fruit",
-      },
-    ];
-    const data = reactive({
-      currentTab: categories[0].tab,
-      contentList: [],
-    });
-    const getContentData = async (tab) => {
-      const { data: result } = await getshoplist({ tab });
-      if (result?.error === 0 && result?.data?.length) {
-        data.contentList = result.data;
-      }
-    };
-    const handleCategoryClick = (tab) => {
-      getContentData(tab);
-      data.currentTab = tab;
-    };
-    getContentData("all");
-    const { contentList, currentTab } = toRefs(data);
-    return { categories, currentTab, contentList, handleCategoryClick };
+    const {currentTab,handleTableClick} = useTabEffect()
+    const {list} = useCurrentListEffect(currentTab)
+
+    return {categories,currentTab,handleTableClick,list}
   },
 };
 </script>
