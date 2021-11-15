@@ -17,3 +17,6 @@ div {
   overflow:hiddenl;
   padding-bottom:25.4%;//图片高宽比
 }
+
+3.控制class
+:class="{'category__item': true, 'category__item--active': currentTab === item.tab}"

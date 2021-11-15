@@ -24,3 +24,11 @@ export const getshopdetail = params =>{
         params:params,
     })
 }
+
+export const getshoplist = params =>{
+    return request({
+        url:"/shoplist",
+        method:"GET",
+        params:params,
+    })
+}

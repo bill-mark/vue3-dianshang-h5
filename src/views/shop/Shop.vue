@@ -8,6 +8,8 @@
       </div>
     </div>
     <ShopInfo :item="item" :hideBorder="true" />
+
+    <Content/>
   </div>
 </template>
 <script>
@@ -16,17 +18,19 @@ import { useRouter, useRoute } from "vue-router";
 
 import ShopInfo from "@/components/ShopInfo";
 import { getshopdetail } from "@/api/login";
+import Content from './Content.vue'
 export default {
   name: "Shop",
   components: {
     ShopInfo,
+    Content,
   },
   setup() {
     const { item, getItemData } = useShopInfoEffect();
     const { handleBackClick } = useBackEffect();
 
     getItemData();
-    
+
     return { item, handleBackClick };
   },
 };
@@ -61,41 +65,43 @@ const useShopInfoEffect = () => {
 };
 </script>
 
+
 <style lang="scss" scoped>
+@import '../../style/viriables.scss';
 .wrapper {
-  padding: 0 0.18rem;
+  padding: 0 .18rem;
 }
 .search {
   display: flex;
-  margin: 0.2rem 0 0.16rem 0;
-  line-height: 0.32rem;
+  margin: .14rem 0 .04rem 0;
+  line-height: .32rem;
   &__back {
-    width: 0.3rem;
-    font-size: 0.24rem;
-    color: #b6b6b6;
+    width: .3rem;
+    font-size: .24rem;
+    color: #B6B6B6;
   }
   &__content {
     display: flex;
     flex: 1;
-    background: #f5f5f5;
-    border-radius: 0.16rem;
+    background: $search-bgColor;
+    border-radius: .16rem;
     &__icon {
-      width: 0.44rem;
+      width: .44rem;
       text-align: center;
-      color: #b7b7b7;
+      color: $search-fontColor;
     }
     &__input {
       display: block;
       width: 100%;
-      padding-right: 0.2rem;
+      padding-right: .2rem;
       border: none;
       outline: none;
       background: none;
-      height: 0.32rem;
-      font-size: 0.14rem;
-      color: #333;
+      height: .32rem;
+      font-size: .14rem;
+      color: $content-fontcolor;
       &::placeholder {
-        color: #333;
+        color: $content-fontcolor;
       }
     }
   }
