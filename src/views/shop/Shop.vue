@@ -10,6 +10,7 @@
     <ShopInfo :item="item" :hideBorder="true" />
 
     <Content/>
+    <Cart/>
   </div>
 </template>
 <script>
@@ -19,11 +20,13 @@ import { useRouter, useRoute } from "vue-router";
 import ShopInfo from "@/components/ShopInfo";
 import { getshopdetail } from "@/api/login";
 import Content from './Content.vue'
+import Cart from './Cart.vue'
 export default {
   name: "Shop",
   components: {
     ShopInfo,
     Content,
+    Cart,
   },
   setup() {
     const { item, getItemData } = useShopInfoEffect();
