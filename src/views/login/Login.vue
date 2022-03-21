@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import { reactive, toRefs } from "vue";
 import { useRouter } from "vue-router";
 import { login } from "@/api/login";
@@ -59,6 +59,7 @@ const useLoginEffect = (showToast) => {
   return {username,password,abc,handleLogin}
 };
 
+
 export default {
   name: "login",
   components: {
@@ -79,4 +80,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.wrapper_login-button{
+  margin-top: 20px;
+  margin-left: 20px;
+}
 </style>

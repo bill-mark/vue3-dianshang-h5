@@ -21,7 +21,7 @@
         />
         <div class="product__item__detail">
           <h4 class="product__item__title">{{ item.name }}</h4>
-          <p class="product__item__sales" >月售 {{ item.sales }} 件</p>
+          <p class="product__item__sales" >月售 {{ item.sales }} d件</p>
           <p class="product__item__price">
             <span class="product__item__yen">&yen;</span>{{ item.price }}
             <span class="product__item__origin">&yen;{{ item.oldPrice }}</span>
@@ -37,7 +37,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import { reactive,ref, toRefs, watchEffect } from "vue";
 import { getshoplist } from "@/api/login";
 
